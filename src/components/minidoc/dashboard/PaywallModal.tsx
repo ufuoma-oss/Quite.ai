@@ -1,13 +1,12 @@
 'use client';
 
 import React from 'react';
-import { X, Check, ArrowRight, Target } from 'lucide-react';
+import { X, Check, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface PaywallModalProps {
   onClose: () => void;
   onPayment: () => void;
-  onSkipToBilling: () => void;
   isLoading: boolean;
 }
 
@@ -29,7 +28,7 @@ const benefits = [
   { title: 'Stay Accountable', desc: 'Daily reminders and check-ins.' },
 ];
 
-const PaywallModal: React.FC<PaywallModalProps> = ({ onClose, onPayment, onSkipToBilling, isLoading }) => {
+const PaywallModal: React.FC<PaywallModalProps> = ({ onClose, onPayment, isLoading }) => {
   return (
     <AnimatePresence>
       <motion.div 
@@ -72,21 +71,22 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ onClose, onPayment, onSkipT
                 transition={{ delay: 0.2 }}
                 className="text-2xl font-bold text-white mb-1"
               >
-                Unlock Quitee Pro
+                Subscribe to Quitee
               </motion.h2>
-              <motion.p 
+              <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 }}
-                className="text-white font-medium text-base mb-0.5"
+                className="text-white"
               >
-                7-Day Trial – Just $2
-              </motion.p>
+                <span className="text-3xl font-bold">$10</span>
+                <span className="text-base font-medium">/month</span>
+              </motion.div>
               <motion.p 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-emerald-100 text-xs"
+                className="text-emerald-100 text-xs mt-1"
               >
                 Break your habit for real.
               </motion.p>
@@ -121,28 +121,16 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ onClose, onPayment, onSkipT
               disabled={isLoading}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
-              className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white text-base font-medium rounded-xl transition-colors flex items-center justify-center gap-2 group disabled:opacity-80 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white text-base font-bold rounded-xl transition-colors flex items-center justify-center gap-2 group disabled:opacity-80 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
               ) : (
                 <>
-                  <span>Start 7-Day Trial</span>
-                  <span className="bg-white text-emerald-600 px-2 py-0.5 rounded text-sm font-medium">$2</span>
+                  <span>Subscribe Now</span>
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </>
               )}
-            </motion.button>
-
-            {/* Skip Trial Link */}
-            <motion.button 
-              onClick={onSkipToBilling}
-              disabled={isLoading}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="w-full mt-3 py-2 text-xs font-medium text-neutral-500 hover:text-emerald-600 transition-colors"
-            >
-              Know what you want? <span className="underline">Skip trial & subscribe for $10/mo</span>
             </motion.button>
             
             <p className="text-[10px] text-center text-neutral-400 mt-4 font-medium">

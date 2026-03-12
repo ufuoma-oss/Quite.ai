@@ -154,10 +154,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onSignOut }) => {
               setShowPaywall(false);
             }, 1500);
           }}
-          onSkipToBilling={() => {
-            setShowPaywall(false);
-            setActiveSettingModal('billing');
-          }}
           isLoading={isPaymentLoading}
         />
       )}
